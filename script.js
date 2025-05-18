@@ -454,7 +454,10 @@ function checkGuessLyric(userInput, auto = false) {
   const correct = gameState.correct.trim().toLowerCase();
 
   console.log(guess);
-
+  if (userInput === '')
+  {
+    return;
+  }
   document.getElementById("guess-input-lyric").value = "";
   let buttonEnabledLocal = buttonEnabled;
   lyricBoxEnable();
