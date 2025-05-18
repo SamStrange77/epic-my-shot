@@ -714,9 +714,13 @@ function showPlayButton()
 function play ()
 {
   console.log('playing');
-  if (audioGuessed)
+  if (savedState.AudioAttempts != -1)
   {
-     gameState.endTimestamp = gameState.startTimestamp + 10000; 
+    gameState.endTimestamp = gameState.startTimestamp + (savedState.AudioAttempts*500);
+  }
+  else
+  {
+    gameState.endTimestamp = gameState.startTimestamp + 10000;
   }
   const iframeElement = document.getElementById('sc-widget');
   const widget = SC.Widget(iframeElement);
@@ -818,7 +822,6 @@ function checkGuessAudio(userInput, auto = false) {
   else 
   {
     gameState.guesses++;
-    gameState.endTimestamp+=500;
     document.getElementById("result").innerHTML = `
       <div class = "answer-bubbles wrong-answer hoverable">
         ${userInput}
