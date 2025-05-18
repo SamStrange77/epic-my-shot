@@ -21,7 +21,7 @@ let buttonEnabled;
 
 let initialDate = new Date("2025-05-18").setHours(0,0,0,0);
 
-let TODAY = new Date().toISOString.split("T")[0];
+let TODAY = new Date().toISOString().split("T")[0];
 
 //localStorage.removeItem("savedState");
 
