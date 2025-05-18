@@ -15,6 +15,8 @@ let gameState = {
   correct: ''  // flag to prevent further guesses
 };
 
+let audioGuessed;
+
 let wordsDone = []; 
 
 let buttonEnabled;
@@ -712,6 +714,10 @@ function showPlayButton()
 function play ()
 {
   console.log('playing');
+  if (audioGuessed)
+  {
+     gameState.endTimestamp = gameState.startTimestamp + 10000; 
+  }
   const iframeElement = document.getElementById('sc-widget');
   const widget = SC.Widget(iframeElement);
   widget.seekTo(gameState.startTimestamp)
@@ -767,6 +773,7 @@ function checkGuessAudio(userInput, auto = false) {
 
   if (guess === correct) 
   {
+    audioGuessed = true;
     document.getElementById("result").innerHTML = `
       <div class = "answer-bubbles correct-answer hoverable">
         ${gameState.song.title}
